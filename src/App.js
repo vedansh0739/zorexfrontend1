@@ -10,12 +10,19 @@ function App() {
 
   return (
     <div className="App">
+      <h1>dfd</h1>
+      dfd
       <button className="App-button" onClick={handleOpen}>
-        Open another document
+        Open andother document
       </button>
+
+      <div style={{ float: 'left', width: '30%', height: '100vh' }}>
+      {/* Content of your component */}
       <div className="App-viewer">
         <PdfViewerComponent document={document} />
       </div>
+    </div>
+      
     </div>
   );
 }
