@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
+
 .App {
   text-align: center;
   display: flex;
@@ -5,7 +8,20 @@
   height: 100vh;
   overflow: hidden;
 }
+.App {
+  /* Existing styles */
+  /* Add gradient background */
+  background: rgb(248,244,236)
+}
+// <uniquifier>: Use a uniquifier for the class name
+// <weight>: Use a value from 100 to 900
 
+.roboto-slab-a1 {
+  font-family: "Roboto Slab", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
 .App-button {
   border: 0;
   display: block;

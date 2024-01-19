@@ -1,0 +1,103 @@
+.a2 {
+    border: 0px solid grey;
+ /* Corrected from borderRadius to border-radius */
+
+    box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.1); /* Corrected from boxShadow to box-shadow */
+}
+.smallbutton {
+    border: 0px solid grey;
+ /* Corrected from borderRadius to border-radius */
+ background-color: rgb(248,244,236);
+ border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.1); /* Corrected from boxShadow to box-shadow */
+}
+.a2:focus{outline: none;
+  border: none; /* Optionally, if you also want to remove the border */
+}
+h1 {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(to right, rgb(162, 162, 255), green);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+  }
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .box {
+    background-color: rgb(10, 49, 10);
+        gap: 10px; /* Spacing between buttons */
+        padding: 20px;
+
+        justify-content: center; /* Center-align the buttons */
+        display: flex;
+        flex-wrap: wrap;
+
+
+      
+}
+
+  
+  .modal {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  }
+  .a4 {
+    word-break: break-all; /* Allow long words to break and wrap */
+
+    background-color: rgb(26, 63, 31); /* Black background */
+    color: white; /* White text */
+    border: none; /* No border */
+    padding: 10px 20px; /* Padding for size */
+    margin: 5px; /* Margin for spacing between buttons */
+    border-radius: 5px; /* Rounded corners for a modern look */
+    cursor: pointer; /* Cursor changes to a hand icon when hovering */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Adding a subtle shadow for depth */
+    position: relative; /* Set relative positioning for the button */
+    left: 0; /* Align the button to the left */
+    transition: all 0.3s ease; /* Smooth transition for all properties */
+    width: 150px; /* Fixed width */
+    white-space: nowrap; /* Prevent text from wrapping */
+    overflow: hidden; /* Hide overflow text */
+    text-overflow: ellipsis; /* Add ellipsis for overflow text */
+    display: block; /* Make each button a block element */
+    text-align: center; /* Center-align text */
+}
+
+.a4:hover {
+    background-color: #501616; /* Slightly lighter black when hovering */
+    overflow: visible; /* Allow the overflowed content to be visible */
+    white-space: normal; /* Allow text to wrap */
+    width: auto; /* Width adjusts to content */
+    max-width: 300px; /* Maximum width limit to control expansion */
+    text-align: left; /* Align text to left on hover */
+    z-index: 1; /* Ensure the button is above other elements */
+}
+
+
+  
+
+.a5 {
+    border: 1px solid grey;
+
+    border-radius: 10px; /* Corrected from borderRadius to border-radius */
+
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Corrected from boxShadow to box-shadow */
+    font-family: 'Roboto', sans-serif;
+}
+.a5:hover {
+    background-color: #dfdfdf; /* Slightly lighter black when hovering */
+    transform: scale(1.05);    /* Slightly increase size when hovering */
+}
+
+  

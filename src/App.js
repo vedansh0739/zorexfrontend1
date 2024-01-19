@@ -1,29 +1,48 @@
 import { useState } from "react";
-
+import React from "react";
+import ReactDOM from "react-dom";
+import ButtonList from "./components/ButtonList"; // Adjust the import path as necessary
+import ChatInterface from "./components/ChatInterface";
 import PdfViewerComponent from "./components/PdfViewerComponent";
 import "./App.css";
-
+import GreetingModal from "./components/GreetingModal"; 
+import "./components/style1.css"
+import { RecoilRoot } from 'recoil';
 function App() {
-  const [document, setDocument] = useState("document.pdf");
+  const handleCloseGreeting = () => {
+    setShowGreeting(false); // Function to close the greeting modal
+  };
+  const [showGreeting, setShowGreeting] = useState(true);
 
-  const handleOpen = () => setDocument("another-example.pdf");
 
+  const [selectedNames, setSelectedNames] = useState([]);
+  const [pdfUrls, setPdfUrls] = useState([]);
+  const [currentPdf, setCurrentPdf] = useState(null);
+
+  
   return (
+    <RecoilRoot>
     <div className="App">
-      <h1>dfd</h1>
-      dfd
-      <button className="App-button" onClick={handleOpen}>
-        Open andother document
-      </button>
+       <GreetingModal isOpen={showGreeting} onClose={handleCloseGreeting} onFilesSelected={setPdfUrls}/>
 
-      <div style={{ float: 'left', width: '30%', height: '100vh' }}>
-      {/* Content of your component */}
-      <div className="App-viewer">
-        <PdfViewerComponent document={document} />
+
+      <div className="a1" style={{ display: "flex", height: "100vh" }}>
+        <div className='box' style={{ float: "left", width: "10%", height: "100vh" }}>
+          <div className="App-viewer">
+            <ButtonList fileUrls={pdfUrls} onFileSelected={setCurrentPdf}/>
+          </div>
+        </div>
+
+        <div class ame="a3" style={{ width: "50%" }}>
+          <PdfViewerComponent document={currentPdf} />
+        </div>
+
+        <div className="a1" style={{ width: "40%", height: "100vh" }}>
+          <ChatInterface  onFilesSelected={setPdfUrls}/>
+        </div>
       </div>
     </div>
-      
-    </div>
+    </RecoilRoot>
   );
 }
 
