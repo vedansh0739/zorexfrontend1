@@ -9,12 +9,10 @@
   overflow: hidden;
 }
 .App {
-  /* Existing styles */
-  /* Add gradient background */
+
   background: rgb(248,244,236)
 }
-// <uniquifier>: Use a uniquifier for the class name
-// <weight>: Use a value from 100 to 900
+
 
 .roboto-slab-a1 {
   font-family: "Roboto Slab", serif;
