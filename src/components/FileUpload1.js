@@ -1,7 +1,11 @@
 import React, { useRef } from "react";
 import { useRecoilState } from 'recoil';
-import { pdfUrlsState, selectedNamesState } from './atoms';
+import { pdfUrlsState, selectedNamesState, resultsState, fileNamesState,isLoadingState} from './atoms';
+
 const FileUpload = ({ onFilesSelected , onClose}) => {
+  const [isLoading, setIsLoading] = useRecoilState(isLoadingState);
+    const [results, setResults] = useRecoilState(resultsState);
+    const [fileNames, setFileNames]=useRecoilState(fileNamesState)
     const fileInputRef = React.useRef();
     const [selectedNames, setSelectedNames] = useRecoilState(selectedNamesState);
 
@@ -16,8 +20,11 @@ const FileUpload = ({ onFilesSelected , onClose}) => {
         const fileUrls = Array.from(files).map(file => URL.createObjectURL(file));
         onFilesSelected(fileUrls);
 
+        onClose();
+        setIsLoading(true);
 
-        postfiles = Array.from(event.target.files);
+
+        let postfiles = Array.from(event.target.files);
 
         const formData = new FormData();
         postfiles.forEach(file => {
@@ -26,10 +33,19 @@ const FileUpload = ({ onFilesSelected , onClose}) => {
 
         try {
 
-            const response = await fetch('http://127.0.0.1:8000/rag/upload', {
+            const response = await fetch('https://127.0.0.1:8000/rag/upload/', {
                 method: 'POST',
                 body: formData,
+                credentials: 'include' ,
             });
+            const data = await response.json();
+            console.log('Success:', data);
+
+            if (data.results) {
+              setResults(data.results);
+              setFileNames(data.filenames);
+            }
+
 
             if (!response.ok) {
                 throw new Error(`Error: ${response.statusText}`);
@@ -39,8 +55,13 @@ const FileUpload = ({ onFilesSelected , onClose}) => {
             console.log('Files uploaded successfully');
         } catch (error) {
             console.error('Error uploading files:', error);
+        } finally {
+          setIsLoading(false); // Stop loading
         }
-        onClose();
+
+
+
+        
   };
 
   

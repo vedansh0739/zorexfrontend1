@@ -7,7 +7,8 @@ import PdfViewerComponent from "./components/PdfViewerComponent";
 import "./App.css";
 import GreetingModal from "./components/GreetingModal"; 
 import "./components/style1.css"
-import { RecoilRoot } from 'recoil';
+  import posthog from 'posthog-js'
+  import { RecoilRoot } from 'recoil';
 function App() {
   const handleCloseGreeting = () => {
     setShowGreeting(false); // Function to close the greeting modal
@@ -18,6 +19,9 @@ function App() {
   const [selectedNames, setSelectedNames] = useState([]);
   const [pdfUrls, setPdfUrls] = useState([]);
   const [currentPdf, setCurrentPdf] = useState(null);
+
+  posthog.init('phc_tMD75aa2PGdTWMDknYoxhYVk8pbOfkzmVwja1dOAr8M', { api_host: 'https://us.posthog.com' })
+  posthog.capture('my event', { property: 'value' })
 
   
   return (
