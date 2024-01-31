@@ -7,7 +7,7 @@ const ButtonList = ({ fileUrls, onFileSelected }) => {
 
     return (
         <div >
-            <h1>Zorax</h1>
+            <h1>Zorex</h1>
             {fileUrls.map((fileUrl, index) => (
                 <button 
                     key={index} 

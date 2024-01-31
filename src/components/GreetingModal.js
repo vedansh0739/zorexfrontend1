@@ -7,7 +7,7 @@ const GreetingModal = ({ isOpen, onClose,onFilesSelected}) => {
     return (
       <div className="modal-backdrop">
         <div className="modal">
-          <h2>Welcome to Zorax!</h2>
+          <h2>Welcome to Zorex!</h2>
           <br></br>
           <p style={{fontSize: '14px', margin: '20px', padding: '10px'}}>Please upload the documents you want to rummage through</p>
           <br></br>
