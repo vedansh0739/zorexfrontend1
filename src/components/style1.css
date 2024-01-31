@@ -17,7 +17,7 @@
 h1 {
     font-family: 'Roboto', sans-serif;
     background: linear-gradient(to right, rgb(162, 162, 255), green);
-    -webkit-background-clip: text;
+
     -webkit-text-fill-color: transparent; 
     text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
   }
