@@ -35,6 +35,10 @@ export const fileNamesState = atom({
 
 
 
+export const ocrAtom = atom({
+  key: 'ocrState', // unique ID (with respect to other atoms/selectors)
+  default: false, // default value (aka initial value)
+});
 
 export const answersState = atom({
   key: 'answersState', // unique ID (with respect to other atoms/selectors)
@@ -48,5 +52,10 @@ export const answerHeadingsState = atom({
 
 export const queriesState = atom({
   key: 'queriesState',
+  default: [],
+});
+
+export const scoresState = atom({
+  key: 'scoresState',
   default: [],
 });

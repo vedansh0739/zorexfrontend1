@@ -10,7 +10,8 @@ import "./components/style1.css"
   import posthog from 'posthog-js'
   import { RecoilRoot, useSetRecoilState } from 'recoil';
   import { ocrAtom } from './components/atoms';
-function App() {
+
+function Appocr() {
   const handleCloseGreeting = () => {
     setShowGreeting(false); // Function to close the greeting modal
   };
@@ -18,8 +19,8 @@ function App() {
   const setOcrState = useSetRecoilState(ocrAtom);
 
   useEffect(() => {
-
-    setOcrState(false);
+    // Set the ocrAtom to true when the component mounts
+    setOcrState(true);
   }, []);
 
   const [selectedNames, setSelectedNames] = useState([]);
@@ -52,8 +53,8 @@ function App() {
         </div>
       </div>
     </div>
-    
+
   );
 }
 
-export default App;
+export default Appocr;

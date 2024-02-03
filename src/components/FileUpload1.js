@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
-import { useRecoilState } from 'recoil';
-import { pdfUrlsState, selectedNamesState, resultsState, fileNamesState,isLoadingState} from './atoms';
+import { useRecoilState,useRecoilValue } from 'recoil';
+import { pdfUrlsState, selectedNamesState,ocrAtom, resultsState, fileNamesState,isLoadingState} from './atoms';
 
 const FileUpload = ({ onFilesSelected , onClose}) => {
   const [isLoading, setIsLoading] = useRecoilState(isLoadingState);
@@ -8,7 +8,7 @@ const FileUpload = ({ onFilesSelected , onClose}) => {
     const [fileNames, setFileNames]=useRecoilState(fileNamesState)
     const fileInputRef = React.useRef();
     const [selectedNames, setSelectedNames] = useRecoilState(selectedNamesState);
-
+    const isOcrEnabled = useRecoilValue(ocrAtom); 
 
     const handleFileChange = async (event) => {
 
@@ -30,10 +30,10 @@ const FileUpload = ({ onFilesSelected , onClose}) => {
         postfiles.forEach(file => {
             formData.append('files', file);
         });
-
+        const requestUrl = isOcrEnabled ? 'https://127.0.0.1:8000/rag/uploadocr/' : 'https://127.0.0.1:8000/rag/upload/';
         try {
 
-            const response = await fetch('https://127.0.0.1:8000/rag/upload/', {
+            const response = await fetch(requestUrl, {
                 method: 'POST',
                 body: formData,
                 credentials: 'include' ,

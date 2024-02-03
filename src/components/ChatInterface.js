@@ -4,11 +4,12 @@ import {
   resultsState,
   fileNamesState,
   answersState,
+  scoresState,
   answerHeadingsState,
   queriesState,
-  isLoadingState
+  isLoadingState,
 } from "./atoms";
-import { useRecoilState } from 'recoil';
+import { useRecoilState } from "recoil";
 import LoadingIndicator from "./LoadingIndicator";
 import "../App.css";
 
@@ -16,9 +17,9 @@ import "./style1.css";
 import FileUpload from "./FileUpload";
 
 const ChatInterface = ({ onFilesSelected }) => {
-
   const [isLoading, setIsLoading] = useRecoilState(isLoadingState);
   const [answers, setAnswers] = useRecoilState(answersState);
+  const [scores, setAnswersScores] = useRecoilState(scoresState);
   const [answerHeadings, setAnswerHeadings] =
     useRecoilState(answerHeadingsState);
   const [queries, setQueries] = useRecoilState(queriesState);
@@ -43,12 +44,12 @@ const ChatInterface = ({ onFilesSelected }) => {
         })
           .then((response) => response.json())
           .then((data) => {
-            setAnswers((answers) => [...answers, data.result]);
+            setAnswers((answers) => [...answers, data.summaries[0]]);
             setAnswerHeadings((answerHeadings) => [
               ...answerHeadings,
-              data.filename,
+              data.filenames[0],
             ]);
-
+            setAnswersScores((scores)=>[...scores, data.scores[0]])
             setQueries((queries) => [...queries, inputValue]);
           })
           .catch((error) => {
@@ -63,11 +64,10 @@ const ChatInterface = ({ onFilesSelected }) => {
     }
   };
   const sendMessageOnlyIfEnter = async (event) => {
-    if (event.key === 'Enter') {
+    if (event.key === "Enter") {
       await sendMessage();
-  }
+    }
   };
-
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
@@ -95,8 +95,7 @@ const ChatInterface = ({ onFilesSelected }) => {
           overflowY: "auto",
         }}
       >
-
-        {isLoading && <LoadingIndicator />} 
+        {isLoading && <LoadingIndicator />}
         {results.length > 0 && <h4>Summaries:</h4>}
 
         <ul style={{ listStyleType: "none", padding: 0 }}>
@@ -135,14 +134,8 @@ const ChatInterface = ({ onFilesSelected }) => {
           ))}
         </ul>
 
-
-
-
-
-
-
         {queries.length > 0 && <h4>Queries:</h4>}
-      
+
         <ul style={{ listStyleType: "none", padding: 0 }}>
           {answers.map((answer, index) => (
             <li
@@ -154,9 +147,7 @@ const ChatInterface = ({ onFilesSelected }) => {
                 borderRadius: "5px",
               }}
             >
-
-
-<div
+              <div
                 style={{
                   fontSize: "small",
                   lineHeight: "2.1",
@@ -164,10 +155,9 @@ const ChatInterface = ({ onFilesSelected }) => {
                   width: "100%",
                 }}
               >
-                <strong>{'Question'}</strong>
+                <strong>{"Question"}</strong>
                 <p>{queries[index]}</p>
               </div>
-
 
               <div
                 style={{
@@ -178,7 +168,9 @@ const ChatInterface = ({ onFilesSelected }) => {
                 }}
               >
                 <strong>{"Answer"}</strong>
-                <p>{"The most relevant document is "+answerHeadings[index]}</p>
+                <p>
+                  {"The most relevant document is " + answerHeadings[index]}
+                </p>
                 <p>Here is a summary of it:</p>
               </div>
 
@@ -195,8 +187,6 @@ const ChatInterface = ({ onFilesSelected }) => {
             </li>
           ))}
         </ul>
-
-
       </div>
 
       <div
@@ -206,7 +196,7 @@ const ChatInterface = ({ onFilesSelected }) => {
           border: "0px solid grey",
           margin: "10px",
           borderRadius: "10px",
-          height: "25px", // Fixed height for the input area
+          height: "25px", 
           boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
           backgroundColor: "white",
         }}
@@ -217,7 +207,7 @@ const ChatInterface = ({ onFilesSelected }) => {
           value={inputValue}
           onChange={handleInputChange}
           style={{ flex: 1, marginRight: "10px" }}
-          onKeyDown={sendMessageOnlyIfEnter} 
+          onKeyDown={sendMessageOnlyIfEnter}
         />
         <button className="smallbutton" onClick={sendMessage}>
           Search
