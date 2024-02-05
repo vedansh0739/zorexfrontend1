@@ -12,7 +12,7 @@ import {
 import { useRecoilState } from "recoil";
 import LoadingIndicator from "./LoadingIndicator";
 import "../App.css";
-
+import ReactMarkdown from 'react-markdown';
 import "./style1.css";
 import FileUpload from "./FileUpload";
 
@@ -96,7 +96,7 @@ const ChatInterface = ({ onFilesSelected }) => {
         }}
       >
         {isLoading && <LoadingIndicator />}
-        {results.length > 0 && <h4>Summaries:</h4>}
+        {results.length > 0 && <h1 className="zorex">Summaries:</h1>}
 
         <ul style={{ listStyleType: "none", padding: 0 }}>
           {results.map((result, index) => (
@@ -117,7 +117,7 @@ const ChatInterface = ({ onFilesSelected }) => {
                   width: "100%",
                 }}
               >
-                <strong>{fileNames[index]}</strong>
+                <h1 className="filename">{fileNames[index]}</h1>
               </div>
 
               <div
@@ -128,7 +128,8 @@ const ChatInterface = ({ onFilesSelected }) => {
                   width: "100%",
                 }}
               >
-                {result}
+                <ReactMarkdown>{result}</ReactMarkdown>
+                
               </div>
             </li>
           ))}
@@ -182,7 +183,9 @@ const ChatInterface = ({ onFilesSelected }) => {
                   width: "100%",
                 }}
               >
+                <ReactMarkdown>
                 {answer}
+                </ReactMarkdown>
               </div>
             </li>
           ))}

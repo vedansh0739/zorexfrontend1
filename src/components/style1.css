@@ -21,6 +21,12 @@ h1 {
     -webkit-text-fill-color: transparent; 
     text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
   }
+h1.filename{
+  color: rgb(0, 0, 0);
+  background: none !important; /* Remove background if it's not needed */
+  -webkit-background-clip: border-box !important; /* Override background-clip */
+  -webkit-text-fill-color: initial !important; 
+}
 .modal-backdrop {
     position: fixed;
     top: 0;
